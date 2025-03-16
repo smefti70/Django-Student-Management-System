@@ -11,7 +11,7 @@ class Student(models.Model):
 
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=15)
+    phone = models.CharField(max_length=11)
     course = models.CharField(max_length=50, choices=COURSE_CHOICES)
 
     def __str__(self):

@@ -24,6 +24,7 @@ class StudentForm(forms.ModelForm):
     
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
-        if not phone.isdigit() or len(phone) not in [10, 11, 12]:
-            raise forms.ValidationError("Enter a valid phone number (10-12 digits).")
+        pattern = r"^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$"
+        if not phone.isdigit() or not re.match(pattern, phone):
+            raise forms.ValidationError("Enter a valid phone number (11 digits).")
         return phone
