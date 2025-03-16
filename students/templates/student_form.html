@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card shadow p-4">
+        <h2 class="mb-4">{% if form.instance.id %}Edit{% else %}Add{% endif %} Student</h2>
+
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+
+            <!-- Loop through form fields to apply Bootstrap styling -->
+            {% for field in form %}
+            <div class="mb-3">
+                <label class="form-label fw-bold">{{ field.label }}</label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors|striptags }}
+                </div>
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success">Save Student</button>
+            <a href="{% url 'student_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+<!-- Custom Bootstrap Styling -->
+<style>
+    .card {
+        max-width: 500px;
+        margin: auto;
+        border-radius: 12px;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+</style>
+{% endblock %}
+

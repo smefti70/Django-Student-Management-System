@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="card mx-auto shadow-lg p-4" style="max-width: 500px;">
+      <h2 class="text-center text-primary">Student Details</h2>
+      <p><strong>Name:</strong> {{ student.name }}</p>
+      <p><strong>Email:</strong> {{ student.email }}</p>
+      <p><strong>Phone:</strong> {{ student.phone }}</p>
+      <p><strong>Course:</strong> {{ student.course }}</p>
+      <a href="{% url 'student_list' %}" class="btn btn-primary">Back to List</a>
+  </div>
+{% endblock %}
