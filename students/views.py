@@ -22,16 +22,19 @@ def student_create(request):
 
 # Update student details
 def student_update(request, id):
-    student = get_object_or_404(Student, id=id)
+    student = get_object_or_404(Student, id=id)  # Get the student or show 404
     if request.method == "POST":
-        form = StudentForm(request.POST, instance=student)
+        form = StudentForm(request.POST, instance=student)  # Pass instance to edit
         if form.is_valid():
             form.save()
-            messages.success(request, "Student updated successfully!")
-            return redirect('student_list')
+            messages.success(request, "Student details updated successfully!")
+            return redirect("student_list")  # Redirect after successful update
+        else:
+            messages.error(request, "Please correct the errors below.")  # Show error message
     else:
-        form = StudentForm(instance=student)
-    return render(request, 'student_form.html', {'form': form})
+        form = StudentForm(instance=student)  # Prefill form with student data
+
+    return render(request, "student_form.html", {"form": form})
 
 # Delete a student
 def student_delete(request, id):
